@@ -17,7 +17,7 @@ class WaveFormBar extends StatelessWidget {
     super.key,
     required this.amplitude,
     this.animation,
-    this.maxHeight = 2,
+    this.maxHeight = 60,
     this.color = Colors.cyan,
   });
 
@@ -33,7 +33,7 @@ class WaveFormBar extends StatelessWidget {
   Widget _buildWaveFormBar() {
     return Container(
       width: 4,
-      height: (160 / amplitude.current.abs().clamp(1, 160)) * maxHeight,
+      height: (amplitude.current / amplitude.max).clamp(0.0, 1.0) * maxHeight,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10),
