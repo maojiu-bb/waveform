@@ -15,12 +15,14 @@ class AnimatedWaveList extends StatefulWidget {
   const AnimatedWaveList({
     required this.stream,
     this.barBuilder,
+    this.controller,
     super.key,
   });
 
   final Stream<Amplitude> stream; // The stream of amplitude values.
   final Widget Function(Animation<double> animation, Amplitude amplitude)?
       barBuilder;
+  final ScrollController? controller;
 
   @override
   State<AnimatedWaveList> createState() => _AnimatedWaveListState();
@@ -82,6 +84,7 @@ class _AnimatedWaveListState extends State<AnimatedWaveList> {
   @override
   Widget build(BuildContext context) => AnimatedList(
         scrollDirection: Axis.horizontal,
+        controller: widget.controller,
         reverse: true,
         key: _listKey,
         initialItemCount: _list.length,
